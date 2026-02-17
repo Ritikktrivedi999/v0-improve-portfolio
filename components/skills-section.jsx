@@ -2,8 +2,27 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Database, Settings, Star } from "lucide-react"
+import { Code, Database, Settings, Star, Zap } from "lucide-react"
 import { motion } from "framer-motion"
+
+// Tech logos using emojis for visual representation
+const techLogos = {
+  "React.js": "⚛️",
+  "Next.js": "▲",
+  "Node.js": "🟢",
+  "MongoDB": "🍃",
+  "SQL": "🗄️",
+  "JavaScript": "⚡",
+  "TypeScript": "💙",
+  "Tailwind CSS": "🌊",
+  "Express.js": "🚄",
+  "Git": "🔀",
+  "Docker": "🐳",
+  "VS Code": "💻",
+  "GitHub": "🐙",
+  "Postman": "📮",
+  "REST APIs": "🔌",
+}
 
 const skillsData = [
   {
@@ -80,7 +99,7 @@ export default function SkillsSection() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
               >
-                <Card className="group h-full glass-effect border-0 shadow-custom hover:shadow-custom-lg hover-glow transition-all duration-300">
+                <Card className="group h-full glass-effect-ai border border-blue-500/30 shadow-custom hover:shadow-custom-lg hover:ai-glow transition-all duration-300 bg-white/5">
                   <CardHeader className="text-center">
                     <motion.div
                       whileHover={{ rotate: 5 }}
@@ -105,8 +124,9 @@ export default function SkillsSection() {
                         >
                           <Badge
                             variant="secondary"
-                            className="text-xs glass-effect border-0 hover:bg-primary/10 transition-colors"
+                            className="text-xs glass-effect border-0 hover:bg-primary/10 transition-colors ai-border-glow font-medium"
                           >
+                            {techLogos[item] && <span className="mr-1">{techLogos[item]}</span>}
                             {item}
                           </Badge>
                         </motion.div>

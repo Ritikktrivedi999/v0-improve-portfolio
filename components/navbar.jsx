@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Sparkles, Zap } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 import ThemeToggle from "@/components/theme-toggle"
@@ -68,10 +68,18 @@ export default function Navbar({ onThemeChange }) {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <motion.div whileHover={{ scale: 1.05 }} className="flex-shrink-0">
+          <motion.div whileHover={{ scale: 1.05 }} className="flex-shrink-0 flex items-center gap-3">
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               RT
             </span>
+            <motion.div
+              animate={{ scale: [1, 1.1, 1] }}
+              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
+              className="flex items-center gap-1 px-2 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 ai-glow"
+            >
+              <Zap className="h-3 w-3 text-blue-500" />
+              <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">AI Enhanced</span>
+            </motion.div>
           </motion.div>
 
           {/* Desktop Navigation */}

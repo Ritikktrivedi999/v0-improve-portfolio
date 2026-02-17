@@ -1,10 +1,45 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Download, Code2, Sparkles } from "lucide-react"
+import { ArrowRight, Download, Code2, Sparkles, Zap, Star } from "lucide-react"
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
+
+// AI Particle Component
+function AIParticles() {
+  const particles = Array.from({ length: 8 }).map((_, i) => ({
+    id: i,
+    delay: i * 0.1,
+    x: Math.random() * 200 - 100,
+    y: Math.random() * 200,
+  }))
+
+  return (
+    <div className="absolute inset-0 pointer-events-none">
+      {particles.map((particle) => (
+        <motion.div
+          key={particle.id}
+          initial={{ x: 0, y: 0, opacity: 0 }}
+          animate={{
+            x: particle.x,
+            y: -particle.y,
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 3,
+            delay: particle.delay,
+            repeat: Number.POSITIVE_INFINITY,
+            repeatDelay: 2,
+          }}
+          className="absolute"
+        >
+          <Sparkles className="h-4 w-4 text-blue-400 opacity-60" />
+        </motion.div>
+      ))}
+    </div>
+  )
+}
 
 const roles = ["Full Stack Developer", "MERN Stack Developer", "Software Engineer", "Web Developer"]
 
@@ -87,25 +122,48 @@ export default function HeroSection({ isDark = false }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="h-10 flex items-center"
+                className="h-16 flex items-center relative"
               >
-                <p className="text-2xl font-semibold gradient-text">
-                  {displayText}
-                  <motion.span
-                    animate={{ opacity: [1, 0, 1] }}
-                    transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-                    className="text-primary"
+                <div className="relative">
+                  <AIParticles />
+                  <p className="text-2xl font-semibold gradient-text">
+                    {displayText}
+                    <motion.span
+                      animate={{ opacity: [1, 0, 1] }}
+                      transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
+                      className="text-primary"
+                    >
+                      |
+                    </motion.span>
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Tech Stack Chips */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-wrap gap-2"
+              >
+                {['React', 'Node.js', 'MongoDB', 'Next.js'].map((tech, idx) => (
+                  <motion.div
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.7 + idx * 0.1 }}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 border border-blue-500/30 text-blue-600 dark:text-blue-400 ai-border-glow"
                   >
-                    |
-                  </motion.span>
-                </p>
+                    {tech}
+                  </motion.div>
+                ))}
               </motion.div>
             </div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
+              transition={{ delay: 0.8 }}
               className="flex flex-col sm:flex-row gap-4"
             >
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

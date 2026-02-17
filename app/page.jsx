@@ -16,6 +16,7 @@ import AIAssistant from "@/components/ai-assistant"
 import UniverseBackground from "@/components/universe-background"
 import FloatingElements from "@/components/floating-elements"
 import ScrollProgress from "@/components/scroll-progress"
+import ToastContainerWrapper from "@/components/toast-container"
 
 export default function Home() {
   const [isDark, setIsDark] = useState(false)
@@ -37,6 +38,7 @@ export default function Home() {
       <Footer />
       <AIAssistant />
       <Toaster />
+      <ToastContainerWrapper />
     </main>
   )
 }
